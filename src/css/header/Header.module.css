@@ -1,0 +1,17 @@
+.headerContainer {
+  align-items: center;
+  background: var(--color-secondary);
+  border-bottom: 1px solid var(--color-tertiary);
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  padding-top: 24px;
+  padding-left: 24px;
+}
+
+.headerIcon {
+  display: flex;
+  height: 20px;
+  width: 20px;
+}
