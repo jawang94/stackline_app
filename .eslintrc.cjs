@@ -17,6 +17,9 @@ module.exports = {
     "prettier",
   ],
   ignorePatterns: ["dist", ".eslintrc.cjs"],
+  globals: {
+    JSX: "readonly",
+  },
   parser: "@typescript-eslint/parser",
   parserOptions: {
     ecmaFeatures: {
@@ -24,6 +27,11 @@ module.exports = {
     },
     ecmaVersion: 12,
     sourceType: "module",
+  },
+  "settings": {
+    "react": {
+      "version": "detect" // Automatically detect the React version
+    }
   },
   plugins: [
     "react",
@@ -47,6 +55,7 @@ module.exports = {
     camelcase: "off",
     "func-names": "off",
     "import/extensions": "off",
+    "import/no-absolute-path": "off",
     "import/no-unresolved": "off",
     "import/order": "off",
     "jsx-a11y/alt-text": "off",
