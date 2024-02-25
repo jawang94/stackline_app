@@ -1,7 +1,6 @@
 module.exports = {
   plugins: [
     "@babel/plugin-transform-modules-commonjs",
-    ["relay", { artifactDirectory: "./src/__generated__" }],
     [
       "@babel/plugin-transform-runtime",
       {
