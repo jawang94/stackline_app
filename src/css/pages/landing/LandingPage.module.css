@@ -3,6 +3,28 @@
   flex-direction: column;
   min-height: 100%;
   min-width: 100%;
-  justify-content: space-between;
   position: relative;
+  background-color: var(--color-primary);
+}
+
+.landingPageComponentsWrapper {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  width: 100%;
+  padding: calc(var(--spacing-1x) * 4) 0;
+}
+
+.landingPageItem {
+  padding-left: var(--spacing-1x);
+}
+
+.landingPageDataComponents {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: calc(100% - var(--spacing-1x));
+  align-items: top;
+  gap: calc(var(--spacing-1x) * 4);
+  padding: 0 var(--spacing-1x);
 }
