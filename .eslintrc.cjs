@@ -66,6 +66,7 @@ module.exports = {
     "no-shadow": "off",
     "no-underscore-dangle": "off",
     "no-unused-vars": "off",
+    "no-param-reassign": "off",
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react/destructuring-assignment": "off",
@@ -81,4 +82,18 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  "overrides": [
+    {
+      "files": ["*Slice.ts"],
+      "rules": {
+        "no-param-reassign": [
+          "error",
+          {
+            "props": true,
+            "ignorePropertyModificationsFor": ["state"] // Allow state mutations in Redux Toolkit slices
+          }
+        ]
+      }
+    }
+  ],
 }

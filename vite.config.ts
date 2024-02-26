@@ -8,8 +8,11 @@ export default defineConfig({
   plugins: [react()],
   resolve: {
     alias: {
+      _redux: path.resolve(__dirname, "./src/_redux"),
       components: path.resolve(__dirname, "./src/components"),
       css: path.resolve(__dirname, "./src/css"),
+      hooks: path.resolve(__dirname, "./src/hooks"),
+      mock_data: path.resolve(__dirname, "./src/mock_data"),
       utils: path.resolve(__dirname, "./src/utils"),
     },
   },
