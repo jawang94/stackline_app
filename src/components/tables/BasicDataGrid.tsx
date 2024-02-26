@@ -1,13 +1,10 @@
 import { DataGrid } from "@mui/x-data-grid";
 import { useDemoData } from "@mui/x-data-grid-generator";
 
-const VISIBLE_FIELDS = ["name", "rating", "country", "dateCreated", "isAdmin"];
-
 export default function BasicDataGrid() {
   const { data } = useDemoData({
-    dataSet: "Employee",
+    dataSet: "Commodity",
     rowLength: 100,
-    visibleFields: VISIBLE_FIELDS,
   });
 
   return (
@@ -18,7 +15,7 @@ export default function BasicDataGrid() {
           "& .MuiDataGrid-cell:hover": {
             color: "primary.main",
           },
-          boxShadow: 2,
+          border: 0,
         }}
       />
     </div>
