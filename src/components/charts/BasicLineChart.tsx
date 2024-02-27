@@ -1,7 +1,7 @@
 import { LineSeriesType } from "@mui/x-charts";
 import { LineChart } from "@mui/x-charts/LineChart";
 
-type Props = {
+export type BasicLineChartOptions = {
   maxSum: number;
   series: Array<Array<number>>;
   xAxis: Array<string | number>;
@@ -20,7 +20,11 @@ const COLORS = [
   "black",
 ];
 
-export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
+export default function BasicLineChart({
+  series,
+  maxSum,
+  xAxis,
+}: BasicLineChartOptions) {
   const blarg: Array<LineSeriesType> = series.map((data, idx) => ({
     color: COLORS[idx],
     curve: "natural",
@@ -34,6 +38,8 @@ export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
       style={{
         background: "var(--color-pure-white)",
         boxShadow: "0",
+        height: "60vh",
+        maxWidth: "100%",
       }}
     >
       <LineChart
@@ -44,6 +50,7 @@ export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
             scaleType: "point",
             tickLabelStyle: {
               fontSize: 20,
+              transformOrigin: "0 10px",
             },
           },
         ]}
@@ -51,8 +58,10 @@ export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
         leftAxis={{
           labelStyle: { fontSize: 0 },
         }}
-        height={800}
         sx={{
+          "& .MuiChartsAxis-bottom .MuiChartsAxis-tickContainer": {
+            fill: "var(--color-cool-grey)",
+          },
           "& .MuiChartsAxis-left .MuiChartsAxis-line": {
             strokeWidth: 0,
           },
@@ -60,7 +69,6 @@ export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
             strokeWidth: 5,
           },
           boxShadow: 2,
-          fontFamily: "Product Sans",
         }}
       />
     </div>

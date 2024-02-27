@@ -1,21 +1,25 @@
 import { DataGrid } from "@mui/x-data-grid";
-import { useDemoData } from "@mui/x-data-grid-generator";
 
-export default function BasicDataGrid() {
-  const { data } = useDemoData({
-    dataSet: "Commodity",
-    rowLength: 100,
-  });
+export type BasicDataGridOptions = {
+  columns: any;
+  rows: any;
+};
 
+export default function BasicDataGrid({ columns, rows }: BasicDataGridOptions) {
   return (
     <div style={{ background: "var(--color-pure-white)" }}>
       <DataGrid
-        {...data}
+        rows={rows}
+        columns={columns}
         sx={{
           "& .MuiDataGrid-cell:hover": {
             color: "primary.main",
           },
+          "& .MuiDataGrid-cellContent": {
+            color: "var(--color-cool-grey)",
+          },
           border: 0,
+          padding: 2,
         }}
       />
     </div>
