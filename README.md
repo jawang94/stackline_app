@@ -41,5 +41,6 @@ The application supports one view with the following file pathing:
 - I hard-coded `img` for the item image but realistically there would probably be reusable components to handle various media types. These could provider performance for progressive loading, loading skeletons, responsiveness, etc.
 - I also did not spend much time on loading states, error handling/boundaries, and many other things like logging. I figured they would be overkill.
 - The app is more-or-less responsive on web but I did not spend the extra time to double check on every browser and resolution. I also did not add any mobile responsiveness.
+  - **For the best experience, please view the app on Safari using a Desktop or Laptop**
 
 Feel free to reach out with any additional questions!
