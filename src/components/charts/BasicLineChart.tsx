@@ -1,55 +1,33 @@
-import { fetchMockItemData } from "_redux/slices/itemSlice";
-import { RootState } from "_redux/store";
-import dayjs from "dayjs";
-import { useAppDispatch } from "hooks/useDispatch";
-import { useEffect, useMemo } from "react";
-import { useSelector } from "react-redux";
-
+import { LineSeriesType } from "@mui/x-charts";
 import { LineChart } from "@mui/x-charts/LineChart";
 
-export default function BasicLineChart() {
-  const dispatch = useAppDispatch();
+type Props = {
+  maxSum: number;
+  series: Array<Array<number>>;
+  xAxis: Array<string | number>;
+};
 
-  const { data, loading, error } = useSelector(
-    (state: RootState) => state.item,
-  );
+// Hack to rotate line chart colors for multi-series datasets
+const COLORS = [
+  "lightblue",
+  "lightgray",
+  "yellow",
+  "blue",
+  "lightgreen",
+  "orange",
+  "darkgrey",
+  "grey",
+  "black",
+];
 
-  // This is a cheap operation, thus prefer to keep it in-line vs on the global store
-  const formattedSaleData = useMemo(
-    () =>
-      data[0]?.sales.reduce((agg: any, sale: any) => {
-        const monthAbbreviation = dayjs(sale.weekEnding)
-          .format("MMM")
-          .toUpperCase();
-
-        if (!agg[monthAbbreviation]) {
-          agg[monthAbbreviation] = {
-            retailSalesSum: 0,
-            wholesaleSalesSum: 0,
-          };
-        }
-
-        agg[monthAbbreviation].retailSalesSum += sale.retailSales;
-        agg[monthAbbreviation].wholesaleSalesSum += sale.wholesaleSales;
-        return agg;
-      }, {}),
-    [data],
-  );
-
-  useEffect(() => {
-    dispatch(fetchMockItemData());
-  }, [dispatch]);
-
-  if (loading || !formattedSaleData) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-
-  const retailSalesSums = Object.values(formattedSaleData).map(
-    (x: any) => x.retailSalesSum,
-  );
-  const wholesaleSalesSums = Object.values(formattedSaleData).map(
-    (x: any) => x.wholesaleSalesSum,
-  );
-  const maxSum = Math.max(...[...retailSalesSums, ...wholesaleSalesSums]);
+export default function BasicLineChart({ series, maxSum, xAxis }: Props) {
+  const blarg: Array<LineSeriesType> = series.map((data, idx) => ({
+    color: COLORS[idx],
+    curve: "natural",
+    data,
+    showMark: false,
+    type: "line",
+  }));
 
   return (
     <div
@@ -59,23 +37,10 @@ export default function BasicLineChart() {
       }}
     >
       <LineChart
-        title="Retail Sales"
-        series={[
-          {
-            color: "grey",
-            curve: "natural",
-            data: retailSalesSums,
-            showMark: false,
-          },
-          {
-            curve: "natural",
-            data: wholesaleSalesSums,
-            showMark: false,
-          },
-        ]}
+        series={blarg}
         xAxis={[
           {
-            data: Object.keys(formattedSaleData),
+            data: xAxis,
             scaleType: "point",
             tickLabelStyle: {
               fontSize: 20,
@@ -88,7 +53,6 @@ export default function BasicLineChart() {
         }}
         height={800}
         sx={{
-          // leftAxis Line Styles
           "& .MuiChartsAxis-left .MuiChartsAxis-line": {
             strokeWidth: 0,
           },
