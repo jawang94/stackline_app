@@ -67,4 +67,4 @@ export const itemSlice = createSlice({
   reducers: {},
 });
 
-export const itemReducer = itemSlice.reducer;
+export const itemReducer: any = itemSlice.reducer;

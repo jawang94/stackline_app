@@ -105,7 +105,7 @@ const getItemData = (data: any): Maybe<ItemData> => {
 
 export default function LandingPage() {
   const dispatch = useAppDispatch();
-  const { data, _, error } = useSelector((state: RootState) => state.item);
+  const { data, error } = useSelector((state: RootState) => state.item);
   const chartData = useMemo(() => getChartData(data), [data]);
   const tableData = useMemo(() => getTableData(data), [data]);
   const itemData = useMemo(() => getItemData(data), [data]);

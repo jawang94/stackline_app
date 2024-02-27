@@ -13,12 +13,12 @@
     "module": "esnext",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
+    "outDir": "./dist",
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
     "target": "es5",
     "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
-  "include": ["src", "vite.config.ts"],
-  "exclude": ["node_modules", "dist"],
+  "include": ["src", "src/mock_data/stackline_frontend_assessment_data_2021.json", "vite.config.ts"],
 }
