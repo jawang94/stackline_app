@@ -4,7 +4,7 @@ import BasicLineChart, {
   BasicLineChartOptions,
 } from "components/charts/BasicLineChart";
 import Header from "components/header/Header";
-import Item from "components/item/Item";
+import Item, { ItemData } from "components/item/Item";
 import BasicDataGrid, {
   BasicDataGridOptions,
 } from "components/tables/BasicDataGrid";
@@ -15,7 +15,6 @@ import { Suspense, useEffect, useMemo } from "react";
 import { useSelector } from "react-redux";
 import { Maybe } from "types/UtilityTypes";
 import camelCaseToWords from "utils/camelCaseToWords";
-
 import { GridColDef, GridRowsProp } from "@mui/x-data-grid";
 
 // Data TS types should be generated from server schema
@@ -90,11 +89,26 @@ const getTableData = (data: any): Maybe<BasicDataGridOptions> => {
   return { columns, rows };
 };
 
+const getItemData = (data: any): Maybe<ItemData> => {
+  if (!data.length) {
+    return null;
+  }
+  const { image, subtitle, tags, title } = data[0];
+
+  return {
+    image,
+    subtitle,
+    tags,
+    title,
+  };
+};
+
 export default function LandingPage() {
   const dispatch = useAppDispatch();
   const { data, _, error } = useSelector((state: RootState) => state.item);
   const chartData = useMemo(() => getChartData(data), [data]);
   const tableData = useMemo(() => getTableData(data), [data]);
+  const itemData = useMemo(() => getItemData(data), [data]);
 
   useEffect(() => {
     dispatch(fetchMockItemData());
@@ -105,7 +119,11 @@ export default function LandingPage() {
       <Header />
       <div className={landingPageStyles.landingPageComponentsWrapper}>
         <div className={landingPageStyles.landingPageItem}>
-          <Item />
+          {itemData && (
+            <Suspense fallback={<div>Loading...</div>}>
+              <Item {...itemData} />
+            </Suspense>
+          )}
         </div>
         <div className={landingPageStyles.landingPageDataComponents}>
           {error ? <div>{error}</div> : null}

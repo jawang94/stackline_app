@@ -1,9 +1,16 @@
 .itemContainer {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
-  width: 100%;
+  min-width: 250px;
   height: 100vh;
   background-color: white;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  padding: var(--spacing-1x);
+  align-items: center;
+}
+
+.itemImage {
+  width: 50%;
+  height: auto;
+  
 }

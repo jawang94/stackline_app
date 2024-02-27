@@ -1,3 +1,37 @@
 .itemDetailsContainer {
-  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.itemDetailsTitle {
+  margin: 10px 0;
+}
+
+.itemDetailsSubtitle {
+  margin: 0;
+  color: var(--color-cool-grey);
+  text-align: center;
+}
+
+.itemDetailsTagContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.itemDetailsTag {
+  border: 1px solid var(--color-shader);
+  border-radius: 6px;
+  text-align: center;
+  padding: 3px 20px;
+}
+
+.divider {
+  border-bottom: 1px solid var(--color-shader);
+  height: 1px;
+  width: 100%;
+  margin: 20px;
 }
