@@ -1,10 +1,15 @@
 import itemStyles from "css/item/Item.module.css";
-import ItemDetails from "components/item/ItemDetails";
+import ItemDetails, { ItemDetailsData } from "components/item/ItemDetails";
 
-export default function Item() {
+export interface ItemData extends ItemDetailsData {
+  image: string;
+}
+
+export default function Item({ image, ...details }: ItemData) {
   return (
     <div className={itemStyles.itemContainer}>
-      <ItemDetails />
+      <img src={image} height={250} className={itemStyles.itemImage} />
+      <ItemDetails {...details} />
     </div>
   );
 }
