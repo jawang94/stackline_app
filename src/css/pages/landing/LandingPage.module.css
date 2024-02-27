@@ -17,13 +17,14 @@
 
 .landingPageItem {
   padding-left: var(--spacing-1x);
+  width: 25%;
 }
 
 .landingPageDataComponents {
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: calc(100% - var(--spacing-1x));
+  width: 75%;
   align-items: top;
   gap: calc(var(--spacing-1x) * 4);
   padding: 0 var(--spacing-1x);
